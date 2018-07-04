@@ -11,8 +11,8 @@ env:
   - secure: RFwxjYLD+xNjn4GwUyCPFsOJoT8xjVbWgcdtT1mkN98ZKgqDyZVVjdSdtbu5uuz+WLygmcNkBUntYsj3wJKK18Ah/FhpbqFfOsyKJuQBMKR1DhI/C5CQyYKRGV61XvU0PcavCtJaBxgDVfbOUlNrNIGFwH32RKPv6HpTCdMYMzIs8t3MNJ8d0+TLwwSFzqKLgusUNzGarggzEp+RdUZeUZN05wtaaoLzcylOGBgerEgAADKybFzNgFzLOtKIFynvEfz38l/sJhxERHmIe/K1EOsHW9lMeBqkwcE3EH7dZenePzHPFerCPgXzFPFhYtSVZWLTiv+t7YaquLAcEYrKW39PtbJXSQMpNn+YH8FwaCnrcI/Lf3B6GJm08ejbnmo7EV/p3SIhmRFw5TTqvSiVPp5rlm+6nLnRYO2/A9zo5lXtZTpSbytADVgxlUEDeoy/lu0W0cxDN5HYEc8C4WE45rkg01z3u0g6P2axTaHyXG+WrhD/GqaK5d7kjTtXEeHc7Rwj/Tb2Fel2oLu93dt2W4nu2LYcYIaeBOT07dtrkiJ/DSl7wTxzjg7m4tcyM2ZxZSts70QMJVVz7MnoJQ6yxAt8I2KgnIMDGWQYBHlsUAINPaHy1nmmxMtgeKvVPczWTiWkNC0CehcYnC/Fcozkspy5sotucVVOSGGqt10Q4g4=
 script:
 - export TAG=`if [[ $TRAVIS_PULL_REQUEST == "false" ]] && [[ $TRAVIS_BRANCH == "master"
-  ]]; then echo "8.5"; else echo $TRAVIS_PULL_REQUEST_BRANCH; fi`
-- export REPO=dairyd/tomcat
+  ]]; then echo "7"; else echo $TRAVIS_PULL_REQUEST_BRANCH; fi`
+- export REPO=dairyd/centos
 - docker build -t $REPO:$TAG -f Dockerfile .
 after_success:
 - docker login -u $DOCKER_USER -p $DOCKER_PASS
