@@ -1,0 +1,19 @@
+sudo: required
+language: ruby
+services:
+- docker
+env:
+  global:
+  - COMMIT=${TRAVIS_COMMIT::8}
+  - REPO=dairyd/centos
+  - secure: g+0IxY7KuUBvu607+7C6gpqD2xEYrLAmEqlOnRIWpeEJeP7U+mWa2YiRAXoP01kNR7Xg+qELh0vROpUwhZzd+1WhUjQLa2zNTci4Wf2fxO0vyBkWHy/0XjJk1yHbeCuucGD9mRHhYPjsCtJUxUMKODC8bq4JnuXYGYBQrSw9onf1BRjVamNkhGR1K5CgDPZ2TH5qFCP3H7VdS6LxLWouXAdw40X/TxH59rC4gmFlEPA6aLn5xwIGmfJjWddqQkhRjQNGMa2pXTm+TTONu9P+C9dewgpo2hgMsMdzjD4waDGyzgRRCuVTF7mmyxwDThgY0EBE4rZtzKkANZImdGXlHEkFEuN82ciqArRbV9ObKzEtsIlrB6t+XoF5FaH4CNpVs4EHqod4w9UfLHKHjITysZWiCMFMKH2yE2Cbj/Yrsd06b3Bg0SiOa5mpAsoaYWd7NffMtyTw3xB9VX2uJVJCbeq6/8pBlS6/zkzArVhjaBHx/yZzGS4CxTa2ynZp+Jt2g6HiiJvQAk/T0F0A9eQ/v/HoHBCeCYncoJpqBxRh5/VIHzi6TtM+EEm7oyrDhc6ejzCpX96cTPNFqHgGa+QIlajY3OmdKdUP1o3sTHWMj5S5Mnem0bGBJKwpDU3dKuNuq1li1LSPoVtC6qJLXgH7GZEyS/HaQltVb/h1fxK4mgY=
+  - secure: gBjTYjVdB3SLKGMvtGFfOPZonVwuBvFHsX+ZqD/nsMnXrFJohcIinEXv6Fs6okQg0g8/lmotCF2CqwY9cIPJXbCgXmmLhxSspFkEDLi+mHRzQnhtWcFZh5kQB9rHDEvJMJgtk18CksOVn5Th+YQ2FljsedocFAhwAOSXNOnBQFFckgN05tCgNY2jhWocOTLD1OgRq4JGbozV1Lh3xTpBnoGYOQMlBl1uHCOqH7euLdV4xwH0agHnuirEaaunJU3ro4jHXQ0g9seS1VvHfY/TA4cUS6dhL7cvA6auQBiJftLxlSnJNoH6U08ZY3FLFy/TZMQba+pnEmgilO7OJ4LNycdHikCQW2aNM8fveLMw56gQ/BnOLcZ8E0Q/GO7gj9lpIjSOoASzl//u87/FGju17J6jA8tluEkXYtv6ZOXiADNHMWcb/FwuU++FPqQ+rPUaRFG+EL3uL2Z2+m0+FXLCMMjeEzSHX/iavMWG056VHR6YuEg/kA1h2CtjsSwhK95CJpAT4k1P6vW8+B389Cl/bdBqph1X5mdrCU69ullGMj6mE3VYeEtzfgLjtXyaDpsXH09rUQjLViEswd8jR/E/8RszEcyKHy/eMu3ayFxaAFwTpCpVHIXrVZnEVIGGmb4ifYudPQOS+cGJ32GmbDmDT5bAwFfxVCuUnsgGKk4+tpA=
+  - secure: RFwxjYLD+xNjn4GwUyCPFsOJoT8xjVbWgcdtT1mkN98ZKgqDyZVVjdSdtbu5uuz+WLygmcNkBUntYsj3wJKK18Ah/FhpbqFfOsyKJuQBMKR1DhI/C5CQyYKRGV61XvU0PcavCtJaBxgDVfbOUlNrNIGFwH32RKPv6HpTCdMYMzIs8t3MNJ8d0+TLwwSFzqKLgusUNzGarggzEp+RdUZeUZN05wtaaoLzcylOGBgerEgAADKybFzNgFzLOtKIFynvEfz38l/sJhxERHmIe/K1EOsHW9lMeBqkwcE3EH7dZenePzHPFerCPgXzFPFhYtSVZWLTiv+t7YaquLAcEYrKW39PtbJXSQMpNn+YH8FwaCnrcI/Lf3B6GJm08ejbnmo7EV/p3SIhmRFw5TTqvSiVPp5rlm+6nLnRYO2/A9zo5lXtZTpSbytADVgxlUEDeoy/lu0W0cxDN5HYEc8C4WE45rkg01z3u0g6P2axTaHyXG+WrhD/GqaK5d7kjTtXEeHc7Rwj/Tb2Fel2oLu93dt2W4nu2LYcYIaeBOT07dtrkiJ/DSl7wTxzjg7m4tcyM2ZxZSts70QMJVVz7MnoJQ6yxAt8I2KgnIMDGWQYBHlsUAINPaHy1nmmxMtgeKvVPczWTiWkNC0CehcYnC/Fcozkspy5sotucVVOSGGqt10Q4g4=
+script:
+- export TAG=`if [[ $TRAVIS_PULL_REQUEST == "false" ]] && [[ $TRAVIS_BRANCH == "master"
+  ]]; then echo "8.5"; else echo $TRAVIS_PULL_REQUEST_BRANCH; fi`
+- export REPO=dairyd/tomcat
+- docker build -t $REPO:$TAG -f Dockerfile .
+after_success:
+- docker login -u $DOCKER_USER -p $DOCKER_PASS
+- docker push $REPO:$TAG
