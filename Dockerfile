@@ -8,4 +8,4 @@ RUN mkdir -p /opt/centos
 ENV HOME /opt/centos
 WORKDIR /opt/centos
 
-VOLUME ["/etc", "/var/log"]
+VOLUME ["/etc", "/var/log", "/home", "/root"]
