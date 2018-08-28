@@ -1,7 +1,7 @@
 FROM centos:7
 MAINTAINER Leo Luduena <lleo@linux.com>
 
-ENV REFRESHED_AT 2018-07-30
+ENV REFRESHED_AT 2018-08-28
 
 RUN yum update -y
 
