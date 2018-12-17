@@ -1,13 +1,13 @@
 FROM centos:7
-MAINTAINER Leo Luduena <lleo@linux.com>
+LABEL maintainer="devops@yungas.co"
 
-ENV REFRESHED_AT 2018-08-28
+ENV REFRESHED_AT 2018-12-16
 
 RUN yum update -y
 
-RUN mkdir -p /opt/centos
+RUN mkdir -p /opt/server
 
-ENV HOME /opt/centos
-WORKDIR /opt/centos
+ENV HOME /opt/server
+WORKDIR /opt/server
 
 VOLUME ["/etc", "/var/log", "/home", "/root"]
