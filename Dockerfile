@@ -1,7 +1,8 @@
 FROM centos:7
-LABEL maintainer="devops@yungas.co"
 
-ENV REFRESHED_AT 2018-12-16
+LABEL maintainer="24.7@yungasdevops.com"
+
+ENV REFRESHED_AT 2019-01-01
 
 RUN yum update -y
 
