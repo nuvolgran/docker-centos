@@ -2,7 +2,7 @@ FROM centos:7
 
 LABEL maintainer="24.7@yungasdevops.com"
 
-ENV REFRESHED_AT 2019-06-01
+ENV REFRESHED_AT 2019-07-01
 
 RUN yum update -y
 
