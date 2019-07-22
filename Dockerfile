@@ -1,4 +1,4 @@
-FROM centos:7
+FROM centos:6
 
 LABEL maintainer="24.7@yungasdevops.com"
 
