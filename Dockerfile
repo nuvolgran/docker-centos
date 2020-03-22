@@ -2,7 +2,7 @@ FROM centos:6
 
 LABEL maintainer="7of9@yungasdevops.com"
 
-ENV REFRESHED_AT 2019-08-01
+ENV REFRESHED_AT 2020-03-22
 
 RUN yum update -y && yum clean all
 
