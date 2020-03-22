@@ -1,6 +1,6 @@
 FROM centos:6
 
-LABEL maintainer="7of9@yungasdevops.com"
+LABEL maintainer="7of9@ydevops.com"
 
 ENV REFRESHED_AT 2020-03-22
 
