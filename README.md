@@ -1,2 +1,3 @@
-# dairy-centos
-dairyd version of docker image for Centos
+# bts-centos
+battle-tested security
+docker image for Centos
