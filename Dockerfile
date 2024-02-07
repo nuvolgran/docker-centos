@@ -4,7 +4,7 @@ LABEL maintainer="42@wolketechnik.ar"
 
 ENV REFRESHED_AT 2024-02-07
 
-RUN dnf check-update && dnf update -y && dnf clean all
+RUN yum check-update && yum update -y && yum clean all
 
 RUN mkdir -p /opt/server
 
